@@ -1,0 +1,85 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: postgresql-restore
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - env:
+        - name: BITNAMI_DEBUG
+          value: "false"
+        - name: POSTGRESQL_PORT_NUMBER
+          value: "5432"
+        - name: POSTGRESQL_VOLUME_DIR
+          value: /bitnami/postgresql
+        - name: PGDATA
+          value: /bitnami/postgresql/data
+        - name: POSTGRES_USER
+          value: bn_keycloak
+        - name: POSTGRES_POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: postgres-password
+              name: cpt-postgresql
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: cpt-postgresql
+        - name: PGPASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: cpt-postgresql
+        - name: POSTGRES_DB
+          value: bitnami_keycloak
+        - name: POSTGRESQL_ENABLE_LDAP
+          value: "no"
+        - name: POSTGRESQL_ENABLE_TLS
+          value: "no"
+        - name: POSTGRESQL_LOG_HOSTNAME
+          value: "false"
+        - name: POSTGRESQL_LOG_CONNECTIONS
+          value: "false"
+        - name: POSTGRESQL_LOG_DISCONNECTIONS
+          value: "false"
+        - name: POSTGRESQL_PGAUDIT_LOG_CATALOG
+          value: "off"
+        - name: POSTGRESQL_CLIENT_MIN_MESSAGES
+          value: error
+        - name: POSTGRESQL_SHARED_PRELOAD_LIBRARIES
+          value: pgaudit
+        image: docker.io/bitnami/postgresql:15.1.0-debian-11-r0
+        imagePullPolicy: IfNotPresent
+        name: postgresql
+        command:
+          - sh
+          - -c
+          - 'psql --host cpt-postgresql --username $POSTGRES_USER $POSTGRES_DB -f /backups/backup-$(date --iso).psql'
+        resources:
+          requests:
+            cpu: 250m
+            memory: 256Mi
+        securityContext:
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /backups
+          name: backup
+      dnsPolicy: ClusterFirst
+      priority: 0
+      schedulerName: default-scheduler
+      securityContext:
+        fsGroup: 1001
+      serviceAccount: default
+      serviceAccountName: default
+      subdomain: cpt-postgresql-hl
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: backup
+        persistentVolumeClaim:
+          claimName: postgresql-backup
