@@ -6,40 +6,78 @@ global:
   # https://github.com/camunda/camunda-platform/releases
   # https://hub.docker.com/u/camunda
   image:
-    # renovate: datasource=github-releases depName=camunda/camunda-platform
-    tag: 8.3.1
+    tag:
+
+  identity:
+    image:
+      repository: camunda/identity
+      tag: 8.5.6
+
+console:
+  # Camunda Enterprise repository.
+  # registry.camunda.cloud/console
+  image:
+    # renovate: datasource=docker depName=camunda/console lookupName=registry.camunda.cloud/console/console-sm
+    tag: 8.5.112
 
 connectors:
   # https://hub.docker.com/r/camunda/connectors-bundle/tags
   image:
     repository: camunda/connectors-bundle
-    tag: 8.3.0
+    tag: 8.5.9
 
-identity:
-  keycloak:
-    # https://hub.docker.com/r/bitnami/keycloak/tags
-    image:
-      repository: bitnami/keycloak
-      tag: 22.0.5
-    postgresql:
-      # https://hub.docker.com/r/bitnami/postgresql/tags
-      image:
-        repository: bitnami/postgresql
-        tag: 15.4.0
+operate:
+  # https://hub.docker.com/r/camunda/operate/tags
+  image:
+    tag: 8.5.4
 
 optimize:
   # https://hub.docker.com/r/camunda/optimize/tags
   image:
     repository: camunda/optimize
-    # renovate: datasource=docker depName=camunda/optimize
-    tag: 8.3.1
+    tag: 8.5.6
+
+tasklist:
+  # https://hub.docker.com/r/camunda/tasklist/tags
+  image:
+    tag: 8.5.2
 
 webModeler:
   # Camunda Enterprise repository.
   # registry.camunda.cloud/web-modeler-ee
   image:
     # renovate: datasource=docker depName=camunda/web-modeler lookupName=registry.camunda.cloud/web-modeler-ee/modeler-restapi
-    tag: 8.3.0
+    tag: 8.5.9
+
+zeebe:
+  # https://hub.docker.com/r/camunda/zeebe/tags
+  image:
+    tag: 8.5.3
+
+zeebeGateway:
+  # https://hub.docker.com/r/camunda/zeebe/tags
+  image:
+    tag: 8.5.3
+
+#
+# Identity
+#
+
+identity:
+  # https://hub.docker.com/r/camunda/identity/tags
+  image:
+    tag: 8.5.5
+
+identityKeycloak:
+  # https://hub.docker.com/r/bitnami/keycloak/tags
+  image:
+    repository: bitnami/keycloak
+    tag: 23.0.7
+  postgresql:
+    # https://hub.docker.com/r/bitnami/postgresql/tags
+    image:
+      repository: bitnami/postgresql
+      tag: 15.8.0
 
 #
 # Elasticsearch
@@ -47,5 +85,6 @@ webModeler:
 
 elasticsearch:
   # https://hub.docker.com/r/bitnami/elasticsearch/tags
-  image: bitnami/elasticsearch
-  tag: 8.8.2
+  image:
+    repository: bitnami/elasticsearch
+    tag: 8.12.2
