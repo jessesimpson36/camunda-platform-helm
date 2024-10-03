@@ -251,14 +251,5 @@
       ],
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     }
-  ],
-
-  "hostRules": [
-    {
-      "hostType": "docker",
-      "matchHost": "https://registry.camunda.cloud",
-      "username": "{{ secrets.REG_USERNAME }}",
-      "password": "{{ secrets.REG_PASSWORD }}"
-    }
   ]
 }
