@@ -23,7 +23,7 @@ on:
         description: |
           Define a ttl for the lifespan of the deployment
           NOTE: Currently, any ttl will be handled as a 24h deployment
-        required: false # TODO: configure a way to handle ttl for permanent clusters see https://github.com/camunda/camunda-platform-helm/pull/1816#discussion_r1658465380
+        required: false # TODO: configure a way to handle ttl for permanent clusters see https://github.com/jessesimpson36/camunda-platform-helm/pull/1816#discussion_r1658465380
         default: ""
         type: string
       flows:

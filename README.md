@@ -55,13 +55,13 @@ The guides have detailed examples of use cases, such as Ingress setup.
 
 ## Issues
 
-If you find any problem with the Camunda 8 Helm charts, create a [new issue](https://github.com/camunda/camunda-platform-helm/issues).
+If you find any problem with the Camunda 8 Helm charts, create a [new issue](https://github.com/jessesimpson36/camunda-platform-helm/issues).
 
 ## Contributing
 
 We value all feedback and contributions. To start contributing to this project, please:
 
-- **Don't create a PR without opening [an issue](https://github.com/camunda/camunda-platform-helm/issues/new/choose)
+- **Don't create a PR without opening [an issue](https://github.com/jessesimpson36/camunda-platform-helm/issues/new/choose)
   and discussing it first.**
 - Familiarize yourself with the
 [contribution guide](./docs/contributing.md).

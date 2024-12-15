@@ -75,7 +75,7 @@ spec:
               value: {{ .Values.tasklist.identity.userAccessRestrictions.enabled | quote }}
             {{- /*
               TODO: Remove the trimSuffix when it's fixed in Tasklist.
-              https://github.com/camunda/camunda-platform-helm/issues/714
+              https://github.com/jessesimpson36/camunda-platform-helm/issues/714
             */}}
             - name: CAMUNDA_TASKLIST_IDENTITY_REDIRECT_ROOT_URL
               value: {{ tpl .Values.global.identity.auth.tasklist.redirectUrl $ | trimSuffix .Values.tasklist.contextPath | quote }}

@@ -15,7 +15,7 @@ The changelog is automatically generated and it follows [Conventional Commits](h
 body = """
 
 {% if version %}\
-    ## [{{ version | trim_start_matches(pat="v") }}](https://github.com/camunda/camunda-platform-helm/releases/tag/{{ version }}) ({{ timestamp | date(format="%Y-%m-%d") }})
+    ## [{{ version | trim_start_matches(pat="v") }}](https://github.com/jessesimpson36/camunda-platform-helm/releases/tag/{{ version }}) ({{ timestamp | date(format="%Y-%m-%d") }})
 {% else %}\
     ## [unreleased]
 {% endif %}\

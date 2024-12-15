@@ -9,7 +9,7 @@ type: application
 icon: https://helm.camunda.io/imgs/camunda.svg
 home: https://docs.camunda.io/docs/self-managed/overview/
 sources:
-  - https://github.com/camunda/camunda-platform-helm
+  - https://github.com/jessesimpson36/camunda-platform-helm
 keywords:
   - bpm
   - bpmn
@@ -56,7 +56,7 @@ annotations:
     - name: Camunda 8 Self-Managed docs
       url: https://docs.camunda.io/docs/self-managed/about-self-managed/
     - name: Camunda 8 Self-Managed Helm charts
-      url: https://github.com/camunda/camunda-platform-helm
+      url: https://github.com/jessesimpson36/camunda-platform-helm
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/changes: |
     - kind: fixed

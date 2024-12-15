@@ -14,7 +14,7 @@
 
 // NOTE: This is test should be part of Identity package, but it's added here because Helm 3 (v3.10.x)
 // 			 still doesn't have "export-values" option to share data between the parent (Identity) and sub-chart (Keycloak).
-//			 For more details: https://github.com/camunda/camunda-platform-helm/pull/487
+//			 For more details: https://github.com/jessesimpson36/camunda-platform-helm/pull/487
 // TODO: Move this to Identity subchart once "export-values" is implemented.
 //       For more details: https://github.com/helm/helm/pull/10804
 

@@ -1,4 +1,4 @@
-# Docs: https://github.com/camunda/camunda-platform-helm/blob/main/docs/gha-workflows.md
+# Docs: https://github.com/jessesimpson36/camunda-platform-helm/blob/main/docs/gha-workflows.md
 name: "Test - Integration - Template"
 
 on:
@@ -118,7 +118,7 @@ jobs:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
         with:
           # This is needed if the workflow is triggered by workflow_call.
-          repository: camunda/camunda-platform-helm
+          repository: jessesimpson36/camunda-platform-helm
           ref: ${{ inputs.camunda-helm-git-ref }}
       - name: Generate workflow matrix
         id: generate-workflow-matrix
@@ -168,7 +168,7 @@ jobs:
       - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
         with:
           # This is needed to load repo GH composite actions if the workflow triggered by workflow_call.
-          repository: camunda/camunda-platform-helm
+          repository: jessesimpson36/camunda-platform-helm
           ref: ${{ inputs.camunda-helm-git-ref }}
       # When there is a vault-secret-mapping input given, use Vault instead of GitHub secrets
       # and populate environment variables from Vault

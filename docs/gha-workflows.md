@@ -33,7 +33,7 @@ jobs:
   ...
   helm-deploy:
     name: Helm chart Integration Tests
-    uses: camunda/camunda-platform-helm/.github/workflows/test-integration-template.yaml@main
+    uses: jessesimpson36/camunda-platform-helm/.github/workflows/test-integration-template.yaml@main
     secrets: inherit
     with:
       # Unique identifier used in the deployment hostname
@@ -136,7 +136,7 @@ jobs:
   ...
   helm-deploy:
     name: Helm chart Integration Tests
-    uses: camunda/camunda-platform-helm/.github/workflows/test-integration-template.yaml@main
+    uses: jessesimpson36/camunda-platform-helm/.github/workflows/test-integration-template.yaml@main
     secrets: inherit
     with:
       identifier: dev-console-sm
@@ -218,7 +218,7 @@ jobs:
               console:
                 enabled: false
     name: Helm integration tests - ${{ matrix.deployment.id }}
-    uses: camunda/camunda-platform-helm/.github/workflows/test-integration-template.yaml@main
+    uses: jessesimpson36/camunda-platform-helm/.github/workflows/test-integration-template.yaml@main
     secrets: inherit
     with:
       identifier: dev-console-sm-${{ matrix.deployment.id }}

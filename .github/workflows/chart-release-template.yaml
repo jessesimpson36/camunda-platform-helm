@@ -85,7 +85,7 @@ jobs:
       # Changelog.
       - name: Generate snapshot changelog
         run: |
-          export SNAPSHOT_DESCRIPTION="Check chart dir for more details: https://github.com/camunda/camunda-platform-helm/tree/main/charts/${{ matrix.chart.directory }}"
+          export SNAPSHOT_DESCRIPTION="Check chart dir for more details: https://github.com/jessesimpson36/camunda-platform-helm/tree/main/charts/${{ matrix.chart.directory }}"
           yq -i '.description |= strenv(SNAPSHOT_DESCRIPTION)' Chart.yaml
       #
       # Package.
