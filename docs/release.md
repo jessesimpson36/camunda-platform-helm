@@ -17,7 +17,7 @@ The latest unreleased changes version has rolling version `0.0.0-snapshot-latest
 
 ```shell
 helm template my-camunda-devel \
-  oci://ghcr.io/camunda/helm/camunda-platform \
+  oci://ghcr.io/jessesimpson36/helm/camunda-platform \
   --version 0.0.0-snapshot-latest
 ```
 
@@ -29,7 +29,7 @@ Rolling version `0.0.0-snapshot-alpha` (always pointing to the Camunda latest al
 
 ```shell
 helm template my-camunda-devel \
-  oci://ghcr.io/camunda/helm/camunda-platform \
+  oci://ghcr.io/jessesimpson36/helm/camunda-platform \
   --version 0.0.0-snapshot-alpha
 ```
 
@@ -37,7 +37,7 @@ Fixed version like `0.0.0-8.6.0-alpha2` (it will be updated according to the Cam
 
 ```shell
 helm template my-camunda-devel \
-  oci://ghcr.io/camunda/helm/camunda-platform \
+  oci://ghcr.io/jessesimpson36/helm/camunda-platform \
   --version 0.0.0-8.6.0-alpha2
 ```
 

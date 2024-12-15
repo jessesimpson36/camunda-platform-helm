@@ -54,7 +54,7 @@ jobs:
       deployment-ttl: "${{ contains(github.event.pull_request.labels.*.name, 'test-persistent') && '1w' || '' }}"
       platforms: "gke,rosa"
       flows: "install,upgrade"
-      camunda-helm-repo: "oci://ghcr.io/camunda/helm/camunda-platform"
+      camunda-helm-repo: "oci://ghcr.io/jessesimpson36/helm/camunda-platform"
       camunda-helm-dir: "camunda-platform-alpha"
       camunda-helm-git-ref: "${{ github.event.pull_request.head.sha }}"
       # We need to set the var here as the Alpha is stored on the OCI Helm registry and uses different versioning.
