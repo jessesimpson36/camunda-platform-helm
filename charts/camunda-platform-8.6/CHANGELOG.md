@@ -1,5 +1,20 @@
 # Changelog
 
+## [11.2.0](https://github.com/jessesimpson36/camunda-platform-helm/compare/camunda-platform-8.6-v11.1.1...camunda-platform-8.6-11.2.0) (2024-12-17)
+
+
+### Features
+
+* super scrape interval ([46a9e8f](https://github.com/jessesimpson36/camunda-platform-helm/commit/46a9e8f91b069678bc104c93f3ce5d48bb42e5ee))
+* super scrape interval ([46a9e8f](https://github.com/jessesimpson36/camunda-platform-helm/commit/46a9e8f91b069678bc104c93f3ce5d48bb42e5ee))
+* super scrape interval ([0afe471](https://github.com/jessesimpson36/camunda-platform-helm/commit/0afe471b8efacf7b0a4eef936437a88e4b89658f))
+* trigger ci ([e37748b](https://github.com/jessesimpson36/camunda-platform-helm/commit/e37748b39ec7be059ff782f42c877a1470933c93))
+
+
+### Bug Fixes
+
+* adjust comments ([781697b](https://github.com/jessesimpson36/camunda-platform-helm/commit/781697b5d52dcc49999c27f27bd5ae7f8267277e))
+
 ## [11.1.1](https://github.com/jessesimpson36/camunda-platform-helm/compare/camunda-platform-8.6-v11.1.0...camunda-platform-8.6-11.1.1) (2024-12-15)
 
 
