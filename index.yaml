@@ -16,6 +16,77 @@ entries:
         - name: Camunda 8 Self-Managed docs
           url: https://docs.camunda.io/docs/self-managed/about-self-managed/
         - name: Camunda 8 Self-Managed Helm charts
+          url: https://github.com/jessesimpson36/camunda-platform-helm
+      camunda.io/helmCLIVersion: 3.16.3
+    apiVersion: v2
+    appVersion: 8.6.x
+    created: "2024-12-17T03:39:31.982448645Z"
+    dependencies:
+    - alias: identityKeycloak
+      condition: identity.keycloak.enabled,identityKeycloak.enabled
+      name: keycloak
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 22.2.6
+    - alias: identityPostgresql
+      condition: identity.postgresql.enabled,identityPostgresql.enabled
+      name: postgresql
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 15.x.x
+    - alias: postgresql
+      condition: postgresql.enabled
+      name: web-modeler-postgresql
+      repository: file://../web-modeler-postgresql-15
+      version: 15.x.x
+    - condition: elasticsearch.enabled
+      name: elasticsearch
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 21.4.1
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 2.x.x
+    description: 'Camunda 8 Self-Managed Helm charts. Camunda''s process automation
+      platform allows developers to design, automate and improve processes. '
+    digest: 21d2a19dbc2d1709987f80e0023192fb4e9e5109f10351c6b9feefe192ef0b5e
+    home: https://docs.camunda.io/docs/self-managed/overview/
+    icon: https://helm.camunda.io/imgs/camunda.svg
+    keywords:
+    - bpm
+    - bpmn
+    - camunda-platform
+    - dmn
+    - process-engine
+    - workflow
+    maintainers:
+    - email: ahmed.abouzaid@camunda.com
+      name: aabouzaid
+    - email: daniel.rodriguez@camunda.com
+      name: drodriguez-305
+    - email: hamza.masood@camunda.com
+      name: hamza-m-masood
+    - email: jesse.simpson@camunda.com
+      name: jessesimpson36
+    name: camunda-platform
+    sources:
+    - https://github.com/jessesimpson36/camunda-platform-helm
+    type: application
+    urls:
+    - https://github.com/jessesimpson36/camunda-platform-helm/releases/download/camunda-platform-11.1.1/camunda-platform-11.1.1.tgz
+    version: 11.1.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: "Adding TLS support to console"
+        - kind: added
+          description: "Add core unified prefix for Elasticsearch/OpenSearch"
+        - kind: fixed
+          description: "Add default webModler url when ingress is disabled"
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/links: |
+        - name: Camunda 8 docs
+          url: https://docs.camunda.io/
+        - name: Camunda 8 Self-Managed docs
+          url: https://docs.camunda.io/docs/self-managed/about-self-managed/
+        - name: Camunda 8 Self-Managed Helm charts
           url: https://github.com/camunda/camunda-platform-helm
       camunda.io/helmCLIVersion: 3.16.3
     apiVersion: v2
@@ -13536,4 +13607,4 @@ entries:
     urls:
     - https://github.com/camunda-community-hub/camunda-cloud-helm/releases/download/zeebe-zeeqs-helm-1.0.0/zeebe-zeeqs-helm-1.0.0.tgz
     version: 1.0.0
-generated: "2024-12-17T03:39:06.087404589Z"
+generated: "2024-12-17T03:39:32.60095917Z"
