@@ -3764,3 +3764,4 @@ prometheusServiceMonitor:
   # Should be *less* than 60s if the provided grafana dashboard is used, which can be found here https://github.com/camunda/camunda/tree/main/monitor/grafana,
   # otherwise it isn't able to show any metrics which is aggregated over 1 min.
   scrapeInterval: 10s
+  yuck: value
