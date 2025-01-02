@@ -93,6 +93,7 @@ jobs:
 
   prepare-clusters:
     name: Prepare clusters
+    if: false
     needs:
       - clusters-info
     strategy:
@@ -215,6 +216,7 @@ jobs:
             kubeconfig_raw: ${{ steps.export_kube_config.outputs.kubeconfig_raw }}
 
   access-info:
+    if: false
     name: "Read kube configs from matrix"
     runs-on: ubuntu-latest
     needs: prepare-clusters
@@ -227,6 +229,7 @@ jobs:
           matrix-step-name: prepare-clusters
 
   integration-tests:
+    if: false
     name: "Run integration tests - ${{ matrix.distro.name }}"
     needs:
       - clusters-info

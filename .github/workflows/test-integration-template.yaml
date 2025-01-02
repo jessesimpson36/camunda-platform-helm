@@ -85,6 +85,10 @@ on:
         required: false
         default: true
         type: boolean
+      kind:
+        description: Setup and use a kind cluster instead of GKE
+        default: true
+        type: boolean
 
 permissions:
   contents: read
@@ -192,8 +196,12 @@ jobs:
           app_id: ${{ secrets.GH_APP_ID_DISTRO_CI_MANAGE_GH_ENVS }}
           private_key: ${{ secrets.GH_APP_PRIVATE_KEY_DISTRO_CI_MANAGE_GH_ENVS }}
       # TODO: Later, find a way to abstract the auth for different platforms.
+      - name: Create a kind cluster
+        uses: helm/kind-action@v1
+        if: inputs.kind
+
       - name: Authenticate to GKE
-        if: matrix.distro.platform == 'gke' && inputs.auth-data == ''
+        if: matrix.distro.platform == 'gke' && inputs.auth-data == '' && !inputs.kind
         uses: ./.github/actions/gke-login
         with:
           cluster-name: ${{ secrets[matrix.distro.secret.cluster-name] }}
