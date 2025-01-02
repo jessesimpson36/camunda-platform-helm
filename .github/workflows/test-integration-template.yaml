@@ -200,6 +200,16 @@ jobs:
         uses: helm/kind-action@v1
         if: inputs.kind
 
+      - name: Install ExternalSecrets
+        if: inputs.kind
+        run: |
+          helm repo add external-secrets https://charts.external-secrets.io
+          helm install external-secrets \
+             external-secrets/external-secrets \
+              -n external-secrets \
+              --create-namespace \
+              --set installCRDs=true
+
       - name: Authenticate to GKE
         if: ${{ matrix.distro.platform == 'gke' && inputs.auth-data == '' && (! inputs.kind) }}
         uses: ./.github/actions/gke-login
