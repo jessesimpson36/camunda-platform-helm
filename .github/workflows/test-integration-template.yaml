@@ -201,7 +201,7 @@ jobs:
         if: inputs.kind
 
       - name: Authenticate to GKE
-        if: matrix.distro.platform == 'gke' && inputs.auth-data == '' && ${{ ! inputs.kind }}
+        if: ${{ matrix.distro.platform == 'gke' && inputs.auth-data == '' && (! inputs.kind) }}
         uses: ./.github/actions/gke-login
         with:
           cluster-name: ${{ secrets[matrix.distro.secret.cluster-name] }}
