@@ -9,14 +9,6 @@ matrix:
         workload-identity-provider: DISTRO_CI_GCP_WORKLOAD_IDENTITY_PROVIDER
         service-account: DISTRO_CI_GCP_SERVICE_ACCOUNT
       if: $INPUTS_PLATFORMS_GKE
-    - name: OpenShift
-      type: openshift
-      platform: rosa
-      secret:
-        server-url: DISTRO_CI_OPENSHIFT_CLUSTER_URL
-        username: DISTRO_CI_OPENSHIFT_CLUSTER_USERNAME
-        password: DISTRO_CI_OPENSHIFT_CLUSTER_PASSWORD
-      if: $INPUTS_PLATFORMS_ROSA
   scenario:
     - name: Chart Setup
       desc: Setup chart in production-like setup with Ingress and TLS.
