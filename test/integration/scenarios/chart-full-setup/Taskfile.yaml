@@ -37,8 +37,6 @@ includes:
 tasks:
   setup.pre:
     preconditions:
-    - test -n "${TEST_DOCKER_USERNAME_CAMUNDA_CLOUD}"
-    - test -n "${TEST_DOCKER_PASSWORD_CAMUNDA_CLOUD}"
     - test -n "${TEST_INGRESS_HOST}"
     env:
       VARIABLES_ENV_FILE: "{{ .TEST_CHART_DIR }}/test/integration/testsuites/vars/files/variables.env"
@@ -47,8 +45,8 @@ tasks:
     - kubectl create secret docker-registry registry-camunda-cloud
         --namespace {{ .TEST_NAMESPACE }}
         --docker-server "registry.camunda.cloud"
-        --docker-username "${TEST_DOCKER_USERNAME_CAMUNDA_CLOUD}"
-        --docker-password "${TEST_DOCKER_PASSWORD_CAMUNDA_CLOUD}"
+        --docker-username "test"
+        --docker-password "test"
     # Set Venom vars.
     - |
       echo "VENOM_VAR_SKIP_TEST_INGRESS=false" >> "${VARIABLES_ENV_FILE}"
