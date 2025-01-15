@@ -127,7 +127,7 @@
       "matchPackageNames": [
         "gomplate",
       ],
-      "versionCompatibility": "^(?<compatibility>v)?(?<version>\\d+\\.\\d+\\.\\d+)$",
+      "versioning": "semver-coerced",
     },
 
     //
