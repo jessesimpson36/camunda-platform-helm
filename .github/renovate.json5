@@ -121,14 +121,6 @@
       "matchDepPatterns": ["k8s.io/.*"],
       "allowedVersions": "<0.28.0"
     },
-    // Some asdf plugins use the "v" prefix, so we extract the version without it.
-    {
-      "matchFileNames": [".tool-versions"],
-      "matchPackageNames": [
-        "hairyhenderson/gomplate",
-      ],
-      "extractVersion": "^v(?<version>.+)"
-    },
 
     //
     // Camunda charts.
@@ -261,6 +253,18 @@
         "# renovate: datasource=docker depName=(?<depName>[^\\s]+?)(?: (lookupName|packageName)=(?<packageName>[^\\s]+?))?(?: versioning=(?<versioning>[^\\s]+?))?(?: registryUrl=(?<registryUrl>[^\\s]+?))?\\s*?(tag|imageTag): (?<currentValue>\\S+)"
       ],
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
-    }
+    },
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["\\.tool-versions"],
+      "datasourceTemplate":"github-releases",
+      "matchStrings": [
+        "gomplate\s(?<currentValue>.+)"
+      ],
+      "currentValueTemplate": "^v(?<version>.+)",
+      "extractVersionTemplate": "^v(?<version>.+)"
+    },
   ]
 }
