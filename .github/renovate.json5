@@ -263,8 +263,8 @@
       "matchStrings": [
         "(?<depName>gomplate)\\s(?<currentValue>.+)"
       ],
-      "currentValueTemplate": "^v(?<version>.+)",
-      "extractVersionTemplate": "^v(?<version>.+)"
+      "currentValueTemplate": "^v(?<major>\\d+)(\.(?<minor>\\d+))(\.(?<patch>\\d+))",
+      "extractVersionTemplate": "^v(?<major>\\d+)(\.(?<minor>\\d+))(\.(?<patch>\\d+))"
     },
   ]
 }
