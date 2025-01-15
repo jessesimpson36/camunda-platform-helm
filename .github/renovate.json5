@@ -127,7 +127,6 @@
       "matchPackageNames": [
         "hairyhenderson/gomplate",
       ],
-      "versioning": "semver-coerced",
       "extractVersion": "^v(?<version>.+)"
     },
 
