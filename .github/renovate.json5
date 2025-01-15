@@ -264,8 +264,8 @@
         "(?<depName>gomplate)\\sv?(?<currentValue>.+)"
       ],
       "versioningTemplate": "^v(?<major>\\d+)(\.(?<minor>\\d+))(\.(?<patch>\\d+))",
-      "packageNameTemplate": "hairyhenderson/gomplate",
-      "depNameTemplate": "gomplate",
+      "packageNameTemplate": "gomplate",
+      "depNameTemplate": "hairyhenderson/gomplate",
     },
   ]
 }
