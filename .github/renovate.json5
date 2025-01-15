@@ -128,6 +128,7 @@
         "gomplate",
       ],
       "versioning": "semver-coerced",
+      "extractVersion": "^(?<version>v.+)"
     },
 
     //
