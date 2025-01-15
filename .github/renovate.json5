@@ -261,7 +261,7 @@
       "fileMatch": ["\\.tool-versions"],
       "datasourceTemplate":"github-releases",
       "matchStrings": [
-        "gomplate\s(?<currentValue>.+)"
+        "gomplate\\s(?<currentValue>.+)"
       ],
       "currentValueTemplate": "^v(?<version>.+)",
       "extractVersionTemplate": "^v(?<version>.+)"
