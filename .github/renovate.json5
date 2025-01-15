@@ -261,7 +261,7 @@
       "fileMatch": ["\\.tool-versions"],
       "datasourceTemplate":"github-releases",
       "matchStrings": [
-        "(?<depName>gomplate)\\s(?<currentValue>.+)"
+        "(?<depName>gomplate)\\sv?(?<currentValue>.+)"
       ],
       "versioningTemplate": "^v(?<major>\\d+)(\.(?<minor>\\d+))(\.(?<patch>\\d+))",
       "packageNameTemplate": "hairyhenderson/gomplate",
