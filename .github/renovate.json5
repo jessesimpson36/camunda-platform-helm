@@ -125,10 +125,9 @@
     {
       "matchFileNames": [".tool-versions"],
       "matchPackageNames": [
-        "gomplate",
+        "hairyhenderson/gomplate",
       ],
       "versioning": "semver-coerced",
-      "extractVersion": "^(?<version>v.+)"
     },
 
     //
