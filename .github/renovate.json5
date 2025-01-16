@@ -121,7 +121,13 @@
       "matchDepPatterns": ["k8s.io/.*"],
       "allowedVersions": "<0.28.0"
     },
-
+    {
+      "matchFileNames": [".tool-versions"],
+      "matchPackageNames": [
+        "gomplate",
+      ],
+      "extractVersion": "^v(?<version>.*)$",
+    },
     //
     // Camunda charts.
     {
