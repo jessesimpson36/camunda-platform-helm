@@ -263,9 +263,9 @@
       "matchStrings": [
         "(?<depName>gomplate)\\s+(?<currentValue>.+)"
       ],
-      "versioningTemplate": "^v(?<major>\\d+)(\.(?<minor>\\d+))(\.(?<patch>\\d+))",
+      "versioningTemplate": "semver-coerced",
       "packageNameTemplate": "hairyhenderson/gomplate",
-      "depNameTemplate": "hairyhenderson/gomplate",
+      "depNameTemplate": "gomplate",
     },
   ]
 }
