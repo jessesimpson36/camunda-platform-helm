@@ -261,17 +261,4 @@
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     },
   ],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "fileMatch": ["\\.tool-versions$"],
-      "datasourceTemplate": "github-releases",
-      "matchStrings": [
-        "(?<depName>gomplate)\\s+(?<currentValue>.+)"
-      ],
-      "versioningTemplate": "semver-coerced",
-      "packageNameTemplate": "hairyhenderson/gomplate",
-      "depNameTemplate": "gomplate",
-    },
-  ]
 }
