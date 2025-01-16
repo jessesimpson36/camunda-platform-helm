@@ -258,8 +258,8 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["\\.tool-versions"],
-      "datasourceTemplate":"github-releases",
+      "fileMatch": ["\\.tool-versions$"],
+      "datasourceTemplate": "github-releases",
       "matchStrings": [
         "(?<depName>gomplate)\\sv?(?<currentValue>.+)"
       ],
