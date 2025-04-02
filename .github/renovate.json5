@@ -130,6 +130,7 @@
         'charts/camunda-platform-8.7/values*.yaml',
       ],
       matchUpdateTypes: [
+        'minor',
         'patch',
         'pin',
         'digest',
