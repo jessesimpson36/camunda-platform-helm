@@ -18,8 +18,21 @@ For the best experience, please remember:
 - During the upgrade from the non-patch versions, ensure to review [version update instructions](https://docs.camunda.io/docs/self-managed/setup/upgrade/#version-update-instructions).
 
 
+## [Camunda 8.8](./camunda-8.8)
+
+### [Helm chart 13.0.0-alpha2](./camunda-8.8/#helm-chart-1300-alpha2)
+
+## [Camunda 8.7](./camunda-8.7)
+
+### [Helm chart 12.0.0-alpha5](./camunda-8.7/#helm-chart-1200-alpha5)
+### [Helm chart 12.0.0-alpha4](./camunda-8.7/#helm-chart-1200-alpha4)
+
 ## [Camunda 8.6](./camunda-8.6)
 
+### [Helm chart 11.2.2](./camunda-8.6/#helm-chart-1122)
+### [Helm chart 11.2.1](./camunda-8.6/#helm-chart-1121)
+### [Helm chart 11.2.0](./camunda-8.6/#helm-chart-1120)
+### [Helm chart 11.1.1](./camunda-8.6/#helm-chart-1111)
 ### [Helm chart 11.1.0](./camunda-8.6/#helm-chart-1110)
 ### [Helm chart 11.0.4](./camunda-8.6/#helm-chart-1104)
 ### [Helm chart 11.0.3](./camunda-8.6/#helm-chart-1103)
@@ -29,6 +42,11 @@ For the best experience, please remember:
 
 ## [Camunda 8.5](./camunda-8.5)
 
+### [Helm chart 10.5.2](./camunda-8.5/#helm-chart-1052)
+### [Helm chart 10.5.1](./camunda-8.5/#helm-chart-1051)
+### [Helm chart 10.5.0](./camunda-8.5/#helm-chart-1050)
+### [Helm chart 10.4.8](./camunda-8.5/#helm-chart-1048)
+### [Helm chart 10.4.7](./camunda-8.5/#helm-chart-1047)
 ### [Helm chart 10.4.6](./camunda-8.5/#helm-chart-1046)
 ### [Helm chart 10.4.5](./camunda-8.5/#helm-chart-1045)
 ### [Helm chart 10.4.4](./camunda-8.5/#helm-chart-1044)
@@ -50,6 +68,9 @@ For the best experience, please remember:
 
 ## [Camunda 8.4](./camunda-8.4)
 
+### [Helm chart 9.4.8](./camunda-8.4/#helm-chart-948)
+### [Helm chart 9.4.7](./camunda-8.4/#helm-chart-947)
+### [Helm chart 9.4.6](./camunda-8.4/#helm-chart-946)
 ### [Helm chart 9.4.5](./camunda-8.4/#helm-chart-945)
 ### [Helm chart 9.4.4](./camunda-8.4/#helm-chart-944)
 ### [Helm chart 9.4.3](./camunda-8.4/#helm-chart-943)
@@ -76,6 +97,9 @@ For the best experience, please remember:
 
 ## [Camunda 8.3](./camunda-8.3)
 
+### [Helm chart 8.3.25](./camunda-8.3/#helm-chart-8325)
+### [Helm chart 8.3.24](./camunda-8.3/#helm-chart-8324)
+### [Helm chart 8.3.23](./camunda-8.3/#helm-chart-8323)
 ### [Helm chart 8.3.22](./camunda-8.3/#helm-chart-8322)
 ### [Helm chart 8.3.21](./camunda-8.3/#helm-chart-8321)
 ### [Helm chart 8.3.20](./camunda-8.3/#helm-chart-8320)
