@@ -384,6 +384,7 @@
       enabled: true,
       matchPackageNames: [
         '/.*camunda.*/',
+        '/.*jessesimpson.*/',
       ],
       matchDatasources: [
         'helm',
