@@ -596,7 +596,7 @@ identity:
     ## @param identity.image.registry can be used to set container image registry.
     registry: ""
     ## @param identity.image.repository defines which image repository to use
-    repository: camunda/identity
+    repository: jessesimpson36/identity
     ## @param identity.image.tag can be set to overwrite the global tag, which should be used in that chart
     tag: 8.8.1
     ## @param identity.image.digest can be used to set image digest (overrides tag if set, e.g. "sha256:abcd...")
