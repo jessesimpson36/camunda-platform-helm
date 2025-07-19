@@ -110,13 +110,21 @@ spec:
                   key: {{ include "identity.keycloak.authExistingSecretKey" . }}
             {{- if .Values.identity.firstUser.enabled }}
             - name: VALUES_IDENTITY_FIRSTUSER_PASSWORD
-            {{- if .Values.identity.firstUser.existingSecret }}
+            {{- $secretName := include "camundaPlatform.getSecretName" (dict "newSecretConfig" .Values.identity.firstUser.secret "oldExistingSecret" .Values.identity.firstUser.existingSecret "generatedName" (printf "%s-identity-firstuser" (include "camundaPlatform.fullname" .)) "context" .) }}
+            {{- $secretKey := include "camundaPlatform.getSecretKey" (dict "newSecretConfig" .Values.identity.firstUser.secret "oldExistingSecretKey" .Values.identity.firstUser.existingSecretKey "defaultKey" "identity-firstuser-password" "context" .) }}
+            {{- $shouldCreateSecret := include "camundaPlatform.shouldCreateSecret" (dict "newSecretConfig" .Values.identity.firstUser.secret "oldPassword" .Values.identity.firstUser.password "oldExistingSecret" .Values.identity.firstUser.existingSecret "context" .) }}
+            {{- if or .Values.identity.firstUser.secret.existingSecret .Values.identity.firstUser.existingSecret $shouldCreateSecret }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.identity.firstUser.existingSecret }}
-                  key: {{ .Values.identity.firstUser.existingSecretKey }}
+                  name: {{ $secretName }}
+                  key: {{ $secretKey }}
             {{- else }}
-              value: {{ .Values.identity.firstUser.password | quote }}
+              {{- $plainTextValue := include "camundaPlatform.getSecretValue" (dict "newSecretConfig" .Values.identity.firstUser.secret "oldPassword" .Values.identity.firstUser.password "oldExistingSecret" .Values.identity.firstUser.existingSecret "oldExistingSecretKey" .Values.identity.firstUser.existingSecretKey "context" .) }}
+              value: {{ $plainTextValue | quote }}
+            {{- end }}
+            {{- $isUsingPlainPassword := include "camundaPlatform.isUsingPlainPassword" (dict "newSecretConfig" .Values.identity.firstUser.secret "oldPassword" .Values.identity.firstUser.password "context" .) }}
+            {{- if eq $isUsingPlainPassword "true" }}
+            {{- /* Log warning about plain-text password usage */ -}}
             {{- end }}
             {{- end }}
             {{- if .Values.global.identity.auth.admin.enabled }}
