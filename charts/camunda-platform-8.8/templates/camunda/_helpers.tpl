@@ -198,7 +198,7 @@ Usage: {{ include "camundaPlatform.serviceAccountName" (dict "component" "operat
 */}}
 {{- define "camundaPlatform.licenseSecretName" -}}
   {{- $defaultSecretName := printf "%s-license" (include "camundaPlatform.fullname" .) -}}
-  {{- .Values.global.license.existingSecret | default $defaultSecretName -}}
+  {{- include "camundaPlatform.getSecretName" (dict "newSecretConfig" .Values.global.license.secret "oldExistingSecret" .Values.global.license.existingSecret "generatedName" $defaultSecretName "context" .) -}}
 {{- end -}}
 
 {{/*
@@ -206,7 +206,7 @@ Usage: {{ include "camundaPlatform.serviceAccountName" (dict "component" "operat
 */}}
 {{- define "camundaPlatform.licenseSecretKey" -}}
   {{- $defaultSecretKey := "CAMUNDA_LICENSE_KEY" -}}
-  {{- .Values.global.license.existingSecretKey | default $defaultSecretKey -}}
+  {{- include "camundaPlatform.getSecretKey" (dict "newSecretConfig" .Values.global.license.secret "oldExistingSecretKey" .Values.global.license.existingSecretKey "defaultKey" $defaultSecretKey "context" .) -}}
 {{- end -}}
 
 

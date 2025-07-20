@@ -58,9 +58,20 @@ global:
     ## @param global.license.key if set, it will be exposed as "CAMUNDA_LICENSE_KEY" in the apps.
     key: ""
     ## @param global.license.existingSecret you can provide an existing secret name for Camunda license secret.
+    ## @deprecated - Use global.license.secret.existingSecret instead (will be removed in 8.9)
     existingSecret: ""
     ## @param global.license.existingSecretKey you can provide the key within the existing secret object for Camunda license key.
+    ## @deprecated - Use global.license.secret.existingSecretKey instead (will be removed in 8.9)
     existingSecretKey: ""
+    ## Secret configuration for standardized secret handling
+    ## @extra global.license.secret
+    secret:
+      ## @param global.license.secret.password plain-text license key (non-production usage - will log warning)
+      password: ""
+      ## @param global.license.secret.existingSecret reference to an existing Kubernetes secret
+      existingSecret: ""
+      ## @param global.license.secret.existingSecretKey key within the existing secret (optional)
+      existingSecretKey: "CAMUNDA_LICENSE_KEY"
 
   ## @extra global.compatibility Compatibility adaptations for Kubernetes platforms
   compatibility:
