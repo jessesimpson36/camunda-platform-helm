@@ -444,9 +444,20 @@ global:
         ## @param global.identity.auth.console.wellKnown defines the uri for the well known config which is used by Console (optional).
         wellKnown: https://well-known-uri
         ## @param global.identity.auth.console.existingSecret [string,object] A string literal secret can be provided. If not set, a random secret is generated. Recommended: reference an existing Kubernetes Secret using global.identity.auth.console.existingSecret.name.
+        ## @deprecated - Use global.identity.auth.console.secret.existingSecret instead (will be removed in 8.9)
         existingSecret: ""
         ## @param global.identity.auth.console.existingSecretKey defines the key within the existing secret object.
+        ## @deprecated - Use global.identity.auth.console.secret.existingSecretKey instead (will be removed in 8.9)
         existingSecretKey: identity-console-client-token
+        ## Secret configuration for standardized secret handling
+        ## @extra global.identity.auth.console.secret
+        secret:
+          ## @param global.identity.auth.console.secret.password plain-text password (non-production usage - will log warning)
+          password: ""
+          ## @param global.identity.auth.console.secret.existingSecret reference to an existing Kubernetes secret
+          existingSecret: ""
+          ## @param global.identity.auth.console.secret.existingSecretKey key within the existing secret (optional)
+          existingSecretKey: "identity-console-client-token"
         ## @param global.identity.auth.console.redirectUrl defines the root URL which is used by Keycloak to access WebModeler.
         # Should be publicly accessible, the default value works if a port-forward to WebModeler is created to 8080.
         # Can be overwritten if ingress is in use and an external IP is available.
