@@ -206,22 +206,48 @@ global:
   ## @extra global.elasticsearch.tls
   ## @param global.elasticsearch.tls.enabled enable tls for external elasticsearch
   ## @param global.elasticsearch.tls.existingSecret provide an already existing tls secret for connecting to external elasticsearch
+  ## @deprecated - Use global.elasticsearch.tls.secret.existingSecret instead (will be removed in 8.9)
   ## @extra global.elasticsearch.auth
   ## @param global.elasticsearch.auth.username the username for external elasticsearch
   ## @param global.elasticsearch.auth.password the password for external elasticsearch
+  ## @deprecated - Use global.elasticsearch.auth.secret.password instead (will be removed in 8.9)
   ## @param global.elasticsearch.auth.existingSecret you can provide an existing secret for the external elasticsearch password
+  ## @deprecated - Use global.elasticsearch.auth.secret.existingSecret instead (will be removed in 8.9)
   ## @param global.elasticsearch.auth.existingSecretKey you can provide an existing secret key for the external elasticsearch password
+  ## @deprecated - Use global.elasticsearch.auth.secret.existingSecretKey instead (will be removed in 8.9)
   elasticsearch:
     enabled: true
     external: false
     tls:
       enabled: false
+      ## @deprecated - Use global.elasticsearch.tls.secret.existingSecret instead (will be removed in 8.9)
       existingSecret: ""
+      ## Secret configuration for standardized secret handling
+      ## @extra global.elasticsearch.tls.secret
+      secret:
+        ## @param global.elasticsearch.tls.secret.password plain-text cert content (non-production usage - will log warning)
+        password: ""
+        ## @param global.elasticsearch.tls.secret.existingSecret reference to an existing Kubernetes secret
+        existingSecret: ""
+        ## @param global.elasticsearch.tls.secret.existingSecretKey key within the existing secret (optional)
+        existingSecretKey: "tls-cert"
     auth:
       username: ""
+      ## @deprecated - Use global.elasticsearch.auth.secret.password instead (will be removed in 8.9)
       password: ""
+      ## @deprecated - Use global.elasticsearch.auth.secret.existingSecret instead (will be removed in 8.9)
       existingSecret: ""
+      ## @deprecated - Use global.elasticsearch.auth.secret.existingSecretKey instead (will be removed in 8.9)
       existingSecretKey: "password"
+      ## Secret configuration for standardized secret handling
+      ## @extra global.elasticsearch.auth.secret
+      secret:
+        ## @param global.elasticsearch.auth.secret.password plain-text password (non-production usage - will log warning)
+        password: ""
+        ## @param global.elasticsearch.auth.secret.existingSecret reference to an existing Kubernetes secret
+        existingSecret: ""
+        ## @param global.elasticsearch.auth.secret.existingSecretKey key within the existing secret (optional)
+        existingSecretKey: "password"
       ## @param  global.elasticsearch.disableExporter DEPRECATED: this value is not needed anymore. Use global.elasticsearch.enabled
     disableExporter: false
     ## @extra global.elasticsearch.url Configuration to configure elasticsearch url
