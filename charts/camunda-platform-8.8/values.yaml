@@ -1494,13 +1494,25 @@ webModeler:
       ## @param webModeler.restapi.mail.smtpUser can be used to provide a user for the SMTP server
       smtpUser: ""
       ## @param webModeler.restapi.mail.smtpPassword can be used to provide a password for the SMTP server; ignored if `webModeler.restapi.mail.existingSecret` is set
+      ## @deprecated - Use webModeler.restapi.mail.secret.password instead (will be removed in 8.9)
       smtpPassword: ""
       ## @param webModeler.restapi.mail.smtpTlsEnabled if true, enforces TLS encryption for SMTP connections (using STARTTLS)
       smtpTlsEnabled: true
       ## @param webModeler.restapi.mail.existingSecret [string,object] A string literal SMTP password can be provided. Recommended: reference an existing Kubernetes Secret using webModeler.restapi.mail.existingSecret.name.
+      ## @deprecated - Use webModeler.restapi.mail.secret.existingSecret instead (will be removed in 8.9)
       existingSecret: ""
       ## @param webModeler.restapi.mail.existingSecretPasswordKey can be used to provide the name of an existing secret key containing the SMTP password
+      ## @deprecated - Use webModeler.restapi.mail.secret.existingSecretKey instead (will be removed in 8.9)
       existingSecretPasswordKey: "smtp-password"
+      ## Secret configuration for standardized secret handling
+      ## @extra webModeler.restapi.mail.secret
+      secret:
+        ## @param webModeler.restapi.mail.secret.password plain-text password (non-production usage - will log warning)
+        password: ""
+        ## @param webModeler.restapi.mail.secret.existingSecret reference to an existing Kubernetes secret
+        existingSecret: ""
+        ## @param webModeler.restapi.mail.secret.existingSecretKey key within the existing secret (optional)
+        existingSecretKey: "smtp-password"
       ## @param webModeler.restapi.mail.fromAddress defines the email address that will be displayed as the sender of emails sent by WebModeler
       # NOTE: This value is mandatory.
       fromAddress: ""
