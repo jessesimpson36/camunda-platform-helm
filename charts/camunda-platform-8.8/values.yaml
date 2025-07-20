@@ -524,9 +524,20 @@ global:
         ## @param global.identity.auth.optimize.clientId defines the client id, which is used by Optimize in authentication flows.
         clientId: optimize
         ## @param global.identity.auth.optimize.existingSecret [string,object] A string literal secret can be provided. If not set, a random secret is generated. Recommended: reference an existing Kubernetes Secret using global.identity.auth.optimize.existingSecret.name.
+        ## @deprecated - Use global.identity.auth.optimize.secret.existingSecret instead (will be removed in 8.9)
         existingSecret: ""
         ## @param global.identity.auth.optimize.existingSecretKey defines the key within the existing secret object.
+        ## @deprecated - Use global.identity.auth.optimize.secret.existingSecretKey instead (will be removed in 8.9)
         existingSecretKey: identity-optimize-client-token
+        ## Secret configuration for standardized secret handling
+        ## @extra global.identity.auth.optimize.secret
+        secret:
+          ## @param global.identity.auth.optimize.secret.password plain-text password (non-production usage - will log warning)
+          password: ""
+          ## @param global.identity.auth.optimize.secret.existingSecret reference to an existing Kubernetes secret
+          existingSecret: ""
+          ## @param global.identity.auth.optimize.secret.existingSecretKey key within the existing secret (optional)
+          existingSecretKey: "identity-optimize-client-token"
         ## @param global.identity.auth.optimize.redirectUrl defines the root (or redirect) URL, which is used by Keycloak to access Optimize.
         # Should be publicly accessible, the default value works if a port-forward to Optimize is created to 8083.
         # Can be overwritten if ingress is in use and an external IP is available.
