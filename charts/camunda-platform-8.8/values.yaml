@@ -385,9 +385,20 @@ global:
         ## @param global.identity.auth.admin.clientId defines the client id.
         clientId: admin
         ## @param global.identity.auth.admin.existingSecret [string,object] A string literal password can be provided. If not set, a random secret is generated. Recommended: reference an existing Kubernetes Secret using global.identity.auth.admin.existingSecret.name.
+        ## @deprecated - Use global.identity.auth.admin.secret.existingSecret instead (will be removed in 8.9)
         existingSecret: ""
         ## @param global.identity.auth.admin.existingSecretKey defines the key within the existing secret object.
+        ## @deprecated - Use global.identity.auth.admin.secret.existingSecretKey instead (will be removed in 8.9)
         existingSecretKey: identity-admin-client-token
+        ## Secret configuration for standardized secret handling
+        ## @extra global.identity.auth.admin.secret
+        secret:
+          ## @param global.identity.auth.admin.secret.password plain-text password (non-production usage - will log warning)
+          password: ""
+          ## @param global.identity.auth.admin.secret.existingSecret reference to an existing Kubernetes secret
+          existingSecret: ""
+          ## @param global.identity.auth.admin.secret.existingSecretKey key within the existing secret (optional)
+          existingSecretKey: "identity-admin-client-token"
 
       #######################
       # Management Group
