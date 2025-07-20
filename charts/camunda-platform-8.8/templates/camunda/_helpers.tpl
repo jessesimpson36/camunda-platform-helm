@@ -746,3 +746,142 @@ Release templates.
     metrics: {{ printf "%s%s%s" $baseURLInternal .Values.core.contextPath .Values.core.metrics.prometheus }}
   {{- end }}
 {{- end -}}
+
+{{/*
+********************************************************************************
+Secret handling templates for enhanced secret management.
+********************************************************************************
+*/}}
+
+{{/*
+[camunda-platform] Get secret value with new enhanced format and fallback support.
+Usage: {{ include "camundaPlatform.getSecretValue" (dict "newSecretConfig" .Values.component.secret "oldPassword" .Values.component.password "oldExistingSecret" .Values.component.existingSecret "oldExistingSecretKey" .Values.component.existingSecretKey "context" .) }}
+*/}}
+{{- define "camundaPlatform.getSecretValue" -}}
+  {{- $newSecret := .newSecretConfig -}}
+  {{- $oldPassword := .oldPassword -}}
+  {{- $oldExistingSecret := .oldExistingSecret -}}
+  {{- $oldExistingSecretKey := .oldExistingSecretKey -}}
+  
+  {{- if $newSecret.password -}}
+    {{- if ne $newSecret.password "" -}}
+      {{- $newSecret.password -}}
+    {{- else if $oldPassword -}}
+      {{- $oldPassword -}}
+    {{- end -}}
+  {{- else if $newSecret.existingSecret -}}
+    {{- $newSecret.existingSecret -}}
+  {{- else if $oldExistingSecret -}}
+    {{- $oldExistingSecret -}}
+  {{- else if $oldPassword -}}
+    {{- $oldPassword -}}
+  {{- end -}}
+{{- end -}}
+
+{{/*
+[camunda-platform] Get secret name for new enhanced format with fallback support.
+Usage: {{ include "camundaPlatform.getSecretName" (dict "newSecretConfig" .Values.component.secret "oldExistingSecret" .Values.component.existingSecret "generatedName" "component-secret" "context" .) }}
+*/}}
+{{- define "camundaPlatform.getSecretName" -}}
+  {{- $newSecret := .newSecretConfig -}}
+  {{- $oldExistingSecret := .oldExistingSecret -}}
+  {{- $generatedName := .generatedName -}}
+  
+  {{- if $newSecret.existingSecret -}}
+    {{- $newSecret.existingSecret -}}
+  {{- else if $oldExistingSecret -}}
+    {{- $oldExistingSecret -}}
+  {{- else -}}
+    {{- $generatedName -}}
+  {{- end -}}
+{{- end -}}
+
+{{/*
+[camunda-platform] Get secret key for new enhanced format with fallback support.
+Usage: {{ include "camundaPlatform.getSecretKey" (dict "newSecretConfig" .Values.component.secret "oldExistingSecretKey" .Values.component.existingSecretKey "defaultKey" "password" "context" .) }}
+*/}}
+{{- define "camundaPlatform.getSecretKey" -}}
+  {{- $newSecret := .newSecretConfig -}}
+  {{- $oldExistingSecretKey := .oldExistingSecretKey -}}
+  {{- $defaultKey := .defaultKey -}}
+  
+  {{- if $newSecret.existingSecretKey -}}
+    {{- $newSecret.existingSecretKey -}}
+  {{- else if $oldExistingSecretKey -}}
+    {{- $oldExistingSecretKey -}}
+  {{- else -}}
+    {{- $defaultKey -}}
+  {{- end -}}
+{{- end -}}
+
+{{/*
+[camunda-platform] Check if we should create a secret (either new format plain password or old format).
+Usage: {{ include "camundaPlatform.shouldCreateSecret" (dict "newSecretConfig" .Values.component.secret "oldPassword" .Values.component.password "oldExistingSecret" .Values.component.existingSecret "context" .) }}
+*/}}
+{{- define "camundaPlatform.shouldCreateSecret" -}}
+  {{- $newSecret := .newSecretConfig -}}
+  {{- $oldPassword := .oldPassword -}}
+  {{- $oldExistingSecret := .oldExistingSecret -}}
+  
+  {{- if $newSecret.password -}}
+    {{- if ne $newSecret.password "" -}}
+      {{- "true" -}}
+    {{- end -}}
+  {{- else if and (not $newSecret.existingSecret) $oldPassword -}}
+    {{- "true" -}}
+  {{- else if and (not $oldExistingSecret) (not $newSecret.existingSecret) -}}
+    {{- "true" -}}
+  {{- end -}}
+{{- end -}}
+
+{{/*
+[camunda-platform] Check if using plain-text password (for warning).
+Usage: {{ include "camundaPlatform.isUsingPlainPassword" (dict "newSecretConfig" .Values.component.secret "oldPassword" .Values.component.password "context" .) }}
+*/}}
+{{- define "camundaPlatform.isUsingPlainPassword" -}}
+  {{- $newSecret := .newSecretConfig -}}
+  {{- $oldPassword := .oldPassword -}}
+  
+  {{- if $newSecret.password -}}
+    {{- if ne $newSecret.password "" -}}
+      {{- "true" -}}
+    {{- end -}}
+  {{- else if and (not $newSecret.existingSecret) $oldPassword -}}
+    {{- "true" -}}
+  {{- end -}}
+{{- end -}}
+
+{{/*
+[camunda-platform] Validate secret configuration and show warnings/errors.
+Usage: {{ include "camundaPlatform.validateSecretConfig" (dict "newSecretConfig" .Values.component.secret "oldPassword" .Values.component.password "oldExistingSecret" .Values.component.existingSecret "componentName" "identity.firstUser" "context" .) }}
+*/}}
+{{- define "camundaPlatform.validateSecretConfig" -}}
+  {{- $newSecret := .newSecretConfig -}}
+  {{- $oldPassword := .oldPassword -}}
+  {{- $oldExistingSecret := .oldExistingSecret -}}
+  {{- $componentName := .componentName -}}
+  
+  {{- /* Check for conflicting configurations */ -}}
+  {{- if and $newSecret.password $newSecret.existingSecret -}}
+    {{- fail (printf "ERROR: %s: Cannot specify both secret.password and secret.existingSecret" $componentName) -}}
+  {{- end -}}
+  
+  {{- if and $oldPassword $oldExistingSecret -}}
+    {{- fail (printf "ERROR: %s: Cannot specify both legacy password and existingSecret" $componentName) -}}
+  {{- end -}}
+  
+  {{- if and (or $newSecret.password $newSecret.existingSecret) (or $oldPassword $oldExistingSecret) -}}
+    {{- printf "WARNING: %s: Both new secret format and legacy format are specified. New format takes precedence. Legacy format will be removed in 8.9.\n" $componentName -}}
+  {{- end -}}
+  
+  {{- /* Issue deprecation warnings for legacy usage */ -}}
+  {{- if and (not $newSecret.password) (not $newSecret.existingSecret) (or $oldPassword $oldExistingSecret) -}}
+    {{- printf "WARNING: %s: Using legacy secret format. Please migrate to the new secret.* format. Legacy format will be removed in 8.9.\n" $componentName -}}
+  {{- end -}}
+  
+  {{- /* Issue production warning for plain-text passwords */ -}}
+  {{- $isUsingPlainPassword := include "camundaPlatform.isUsingPlainPassword" (dict "newSecretConfig" $newSecret "oldPassword" $oldPassword "context" .context) -}}
+  {{- if eq $isUsingPlainPassword "true" -}}
+    {{- printf "WARNING: %s: Using plain-text password is not recommended for production. Consider using existingSecret instead.\n" $componentName -}}
+  {{- end -}}
+{{- end -}}
