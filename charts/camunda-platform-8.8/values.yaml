@@ -1462,8 +1462,10 @@ webModeler:
       ## @param webModeler.restapi.externalDatabase.user defines the database user
       user: ""
       ## @param webModeler.restapi.externalDatabase.password can be used to provide the database user's password; ignored if `webModeler.restapi.externalDatabase.existingSecret` is set
+      ## @deprecated - Use webModeler.restapi.externalDatabase.secret.password instead (will be removed in 8.9)
       password: ""
       ## @param webModeler.restapi.externalDatabase.existingSecret [string,object] Reference an existing Kubernetes Secret for the DB password (object form with `.name` is recommended in 8.4–8.7; string form will be treated as a literal password).
+      ## @deprecated - Use webModeler.restapi.externalDatabase.secret.existingSecret instead (will be removed in 8.9)
       ## @skip webModeler.restapi.externalDatabase.existingSecret.name string Name of the Kubernetes Secret containing the DB password; required when using the object form of `existingSecret`.
       ##   • **String form** (schema‐native, but in 8.4–8.7 it will be treated as the literal password rather than the secret name).
       ##  • **Object form** (recommended workaround until 8.8 GA):
@@ -1471,7 +1473,17 @@ webModeler:
       ##         name: my-webmodeler-db-secret
       existingSecret: ""
       ## @param webModeler.restapi.externalDatabase.existingSecretPasswordKey string Key in the Secret data that holds the DB password; defaults to `"password"`.
+      ## @deprecated - Use webModeler.restapi.externalDatabase.secret.existingSecretKey instead (will be removed in 8.9)
       existingSecretPasswordKey: "database-password"
+      ## Secret configuration for standardized secret handling
+      ## @extra webModeler.restapi.externalDatabase.secret
+      secret:
+        ## @param webModeler.restapi.externalDatabase.secret.password plain-text password (non-production usage - will log warning)
+        password: ""
+        ## @param webModeler.restapi.externalDatabase.secret.existingSecret reference to an existing Kubernetes secret
+        existingSecret: ""
+        ## @param webModeler.restapi.externalDatabase.secret.existingSecretKey key within the existing secret (optional)
+        existingSecretKey: "database-password"
 
     ## @extra webModeler.restapi.mail configuration for emails sent by WebModeler
     mail:
