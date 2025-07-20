@@ -411,9 +411,20 @@ global:
         ## @param global.identity.auth.identity.audience defines the audience, which is used by Identity.
         audience: camunda-identity-resource-server
         ## @param global.identity.auth.identity.existingSecret [string,object] can be used to reference an existing secret. This should ONLY be used for an external OIDC provider. If not set, a random secret is generated.
+        ## @deprecated - Use global.identity.auth.identity.secret.existingSecret instead (will be removed in 8.9)
         existingSecret: ""
         ## @param global.identity.auth.identity.existingSecretKey defines the key within the existing secret object.
+        ## @deprecated - Use global.identity.auth.identity.secret.existingSecretKey instead (will be removed in 8.9)
         existingSecretKey: identity-oidc-client-token
+        ## Secret configuration for standardized secret handling
+        ## @extra global.identity.auth.identity.secret
+        secret:
+          ## @param global.identity.auth.identity.secret.password plain-text password (non-production usage - will log warning)
+          password: ""
+          ## @param global.identity.auth.identity.secret.existingSecret reference to an existing Kubernetes secret
+          existingSecret: ""
+          ## @param global.identity.auth.identity.secret.existingSecretKey key within the existing secret (optional)
+          existingSecretKey: "identity-oidc-client-token"
         ## @param global.identity.auth.identity.redirectUrl defines the redirect URL, which is used by the auth platform to access Identity.
         # Should be publicly accessible, the default value works if a port-forward to Identity is created to 8085.
         # Can be overwritten if ingress is in use and an external IP is available.
