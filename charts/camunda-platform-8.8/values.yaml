@@ -474,9 +474,20 @@ global:
         ## @param global.identity.auth.connectors.clientId defines the client id, which is used by Connectors in authentication flows.
         clientId: connectors
         ## @param global.identity.auth.connectors.existingSecret [string,object] A string literal secret can be provided. If not set, a random secret is generated. Recommended: reference an existing Kubernetes Secret using global.identity.auth.connectors.existingSecret.name.
+        ## @deprecated - Use global.identity.auth.connectors.secret.existingSecret instead (will be removed in 8.9)
         existingSecret: ""
         ## @param global.identity.auth.connectors.existingSecretKey defines the key within the existing secret object.
+        ## @deprecated - Use global.identity.auth.connectors.secret.existingSecretKey instead (will be removed in 8.9)
         existingSecretKey: identity-connectors-client-token
+        ## Secret configuration for standardized secret handling
+        ## @extra global.identity.auth.connectors.secret
+        secret:
+          ## @param global.identity.auth.connectors.secret.password plain-text password (non-production usage - will log warning)
+          password: ""
+          ## @param global.identity.auth.connectors.secret.existingSecret reference to an existing Kubernetes secret
+          existingSecret: ""
+          ## @param global.identity.auth.connectors.secret.existingSecretKey key within the existing secret (optional)
+          existingSecretKey: "identity-connectors-client-token"
 
       ## @extra global.identity.auth.core configuration to configure authentication specifics on global level, which can be accessed by other components
       core:
