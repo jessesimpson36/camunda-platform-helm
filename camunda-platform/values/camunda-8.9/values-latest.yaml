@@ -1,5 +1,5 @@
 #
-# Camunda Helm chart.
+# Camunda - Alpha
 #
 
 global:
@@ -9,53 +9,38 @@ global:
     tag:
 
 console:
-  # Camunda Enterprise repository.
   # https://hub.docker.com/r/camunda/console/tags
   image:
     repository: camunda/console
-    tag: 8.7.90
+    tag: 8.9-SNAPSHOT
 
 connectors:
   # https://hub.docker.com/r/camunda/connectors-bundle/tags
   image:
     repository: camunda/connectors-bundle
-    tag: 8.7.10
-
-operate:
-  # https://hub.docker.com/r/camunda/operate/tags
-  image:
-    repository: camunda/operate
-    tag: 8.7.16
+    tag: SNAPSHOT
 
 optimize:
   # https://hub.docker.com/r/camunda/optimize/tags
   image:
     repository: camunda/optimize
-    tag: 8.7.12
-
-tasklist:
-  # https://hub.docker.com/r/camunda/tasklist/tags
-  image:
-    repository: camunda/tasklist
-    tag: 8.7.16
+    tag: 8-latest
 
 webModeler:
   # https://hub.docker.com/r/camunda/web-modeler-restapi
   image:
     # renovate: datasource=docker depName=camunda/web-modeler-restapi
-    tag: 8.7.11
+    tag: SNAPSHOT
 
-zeebe:
-  # https://hub.docker.com/r/camunda/zeebe/tags
-  image:
-    repository: camunda/zeebe
-    tag: 8.7.16
+#
+# Orchestration Cluster
+#
 
-zeebeGateway:
-  # https://hub.docker.com/r/camunda/zeebe/tags
+orchestration:
+  # https://hub.docker.com/r/camunda/camunda/tags
   image:
-    repository: camunda/zeebe
-    tag: 8.7.16
+    repository: camunda/camunda
+    tag: SNAPSHOT
 
 #
 # Identity
@@ -65,7 +50,7 @@ identity:
   # https://hub.docker.com/r/camunda/identity/tags
   image:
     repository: camunda/identity
-    tag: 8.7.8
+    tag: SNAPSHOT
 
 identityKeycloak:
   # https://hub.docker.com/r/bitnami/keycloak/tags
@@ -86,4 +71,4 @@ elasticsearch:
   # https://hub.docker.com/r/bitnami/elasticsearch/tags
   image:
     repository: bitnamilegacy/elasticsearch
-    tag: 8.17.4
+    tag: 8.18.0

@@ -15,11 +15,18 @@ For the best experience, please remember:
 
 - Always use the `Helm CLI` version that's used with the Helm chart. It's mentioned in the matrix for all charts or under chart annotation `camunda.io/helmCLIVersion` for newer charts.
 
-- During the upgrade from the non-patch versions, ensure to review [version update instructions](https://docs.camunda.io/docs/self-managed/setup/upgrade/#version-update-instructions).
+- During the upgrade from the non-patch versions, ensure to review [version update instructions](https://docs.camunda.io/docs/self-managed/deployment/helm/upgrade/).
 
 
 ## [Camunda 8.8](./camunda-8.8)
 
+### [Helm chart 13.1.1](./camunda-8.8/#helm-chart-1311)
+### [Helm chart 13.1.0](./camunda-8.8/#helm-chart-1310)
+### [Helm chart 13.0.0](./camunda-8.8/#helm-chart-1300)
+### [Helm chart 13.0.0-alpha8](./camunda-8.8/#helm-chart-1300-alpha8)
+### [Helm chart 13.0.0-alpha7](./camunda-8.8/#helm-chart-1300-alpha7)
+### [Helm chart 13.0.0-alpha6](./camunda-8.8/#helm-chart-1300-alpha6)
+### [Helm chart 13.0.0-alpha5](./camunda-8.8/#helm-chart-1300-alpha5)
 ### [Helm chart 13.0.0-alpha4.2](./camunda-8.8/#helm-chart-1300-alpha42)
 ### [Helm chart 13.0.0-alpha4.1](./camunda-8.8/#helm-chart-1300-alpha41)
 ### [Helm chart 13.0.0-alpha4](./camunda-8.8/#helm-chart-1300-alpha4)
@@ -28,6 +35,15 @@ For the best experience, please remember:
 
 ## [Camunda 8.7](./camunda-8.7)
 
+### [Helm chart 12.6.3](./camunda-8.7/#helm-chart-1263)
+### [Helm chart 12.6.2](./camunda-8.7/#helm-chart-1262)
+### [Helm chart 12.6.1](./camunda-8.7/#helm-chart-1261)
+### [Helm chart 12.6.0](./camunda-8.7/#helm-chart-1260)
+### [Helm chart 12.5.0](./camunda-8.7/#helm-chart-1250)
+### [Helm chart 12.4.0](./camunda-8.7/#helm-chart-1240)
+### [Helm chart 12.3.0](./camunda-8.7/#helm-chart-1230)
+### [Helm chart 12.2.0](./camunda-8.7/#helm-chart-1220)
+### [Helm chart 12.1.0](./camunda-8.7/#helm-chart-1210)
 ### [Helm chart 12.0.2](./camunda-8.7/#helm-chart-1202)
 ### [Helm chart 12.0.1](./camunda-8.7/#helm-chart-1201)
 ### [Helm chart 12.0.0](./camunda-8.7/#helm-chart-1200)
@@ -36,6 +52,14 @@ For the best experience, please remember:
 
 ## [Camunda 8.6](./camunda-8.6)
 
+### [Helm chart 11.10.2](./camunda-8.6/#helm-chart-11102)
+### [Helm chart 11.10.1](./camunda-8.6/#helm-chart-11101)
+### [Helm chart 11.10.0](./camunda-8.6/#helm-chart-11100)
+### [Helm chart 11.9.0](./camunda-8.6/#helm-chart-1190)
+### [Helm chart 11.8.0](./camunda-8.6/#helm-chart-1180)
+### [Helm chart 11.7.0](./camunda-8.6/#helm-chart-1170)
+### [Helm chart 11.6.0](./camunda-8.6/#helm-chart-1160)
+### [Helm chart 11.5.0](./camunda-8.6/#helm-chart-1150)
 ### [Helm chart 11.4.0](./camunda-8.6/#helm-chart-1140)
 ### [Helm chart 11.3.2](./camunda-8.6/#helm-chart-1132)
 ### [Helm chart 11.3.1](./camunda-8.6/#helm-chart-1131)
@@ -53,6 +77,13 @@ For the best experience, please remember:
 
 ## [Camunda 8.5](./camunda-8.5)
 
+### [Helm chart 10.11.3](./camunda-8.5/#helm-chart-10113)
+### [Helm chart 10.11.2](./camunda-8.5/#helm-chart-10112)
+### [Helm chart 10.11.1](./camunda-8.5/#helm-chart-10111)
+### [Helm chart 10.11.0](./camunda-8.5/#helm-chart-10110)
+### [Helm chart 10.10.0](./camunda-8.5/#helm-chart-10100)
+### [Helm chart 10.9.0](./camunda-8.5/#helm-chart-1090)
+### [Helm chart 10.8.0](./camunda-8.5/#helm-chart-1080)
 ### [Helm chart 10.7.1](./camunda-8.5/#helm-chart-1071)
 ### [Helm chart 10.7.0](./camunda-8.5/#helm-chart-1070)
 ### [Helm chart 10.6.0](./camunda-8.5/#helm-chart-1060)
@@ -82,6 +113,8 @@ For the best experience, please remember:
 
 ## [Camunda 8.4](./camunda-8.4)
 
+### [Helm chart 9.7.0](./camunda-8.4/#helm-chart-970)
+### [Helm chart 9.6.0](./camunda-8.4/#helm-chart-960)
 ### [Helm chart 9.5.2](./camunda-8.4/#helm-chart-952)
 ### [Helm chart 9.5.1](./camunda-8.4/#helm-chart-951)
 ### [Helm chart 9.5.0](./camunda-8.4/#helm-chart-950)
