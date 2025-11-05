@@ -22,40 +22,48 @@
     '{{#if isMajor}}:warning: THIS IS A MAJOR VERSION UPDATE :warning:{{/if}}',
     'Before merging, *always* check with the release notes if any other changes need to be done.',
   ],
-  // Global grouping strategy: minor and patch updates batched, major updates separate
   major: {
     enabled: true,
-    addLabels: ['upgrade:major'],
+    addLabels: [
+      'upgrade:major',
+    ],
   },
   minor: {
     enabled: true,
-    addLabels: ['upgrade:minor'],
+    addLabels: [
+      'upgrade:minor',
+    ],
     groupName: 'minor-updates',
   },
   patch: {
     enabled: true,
-    addLabels: ['upgrade:patch'],
+    addLabels: [
+      'upgrade:patch',
+    ],
     groupName: 'patch-updates',
   },
   digest: {
     enabled: true,
-    addLabels: ['upgrade:digest'],
+    addLabels: [
+      'upgrade:digest',
+    ],
     groupName: 'patch-updates',
   },
   vulnerabilityAlerts: {
-    addLabels: ['security'],
+    addLabels: [
+      'security',
+    ],
     enabled: true,
   },
   'helm-values': {
-    fileMatch: [
-      '(^|/).*?values.*?\\.yaml$',
+    managerFilePatterns: [
+      '/(^|/).*?values.*?\\.yaml$/',
     ],
   },
-  // GitHub Actions configuration
   'github-actions': {
     enabled: true,
-    fileMatch: [
-      '^\\.github/workflows/[^/]+\\.ya?ml$',
+    managerFilePatterns: [
+      '/^\\.github/workflows/[^/]+\\.ya?ml$/',
     ],
   },
   customDatasources: {
@@ -67,32 +75,58 @@
   packageRules: [
     {
       description: 'Major updates require manual review to prevent breaking changes.',
-      matchUpdateTypes: ['major'],
+      matchUpdateTypes: [
+        'major',
+      ],
       automerge: false,
       platformAutomerge: false,
       dependencyDashboardApproval: false,
-      addLabels: ['requires-manual-review'],
+      addLabels: [
+        'requires-manual-review',
+      ],
     },
     {
       description: 'Schedule major updates for Friday nights.',
-      matchUpdateTypes: ['major'],
-      excludePackageNames: ['/.*camunda.*/'],
-      schedule: ['* 0-6,18-23 * * 5'],
+      matchUpdateTypes: [
+        'major',
+      ],
+      schedule: [
+        '* 0-6,18-23 * * 5',
+      ],
+      matchPackageNames: [
+        '!/.*camunda.*/',
+      ],
     },
     {
       description: 'Schedule minor updates for Saturdays.',
-      matchUpdateTypes: ['minor'],
-      excludePackageNames: ['/.*camunda.*/'],
-      schedule: ['* * * * 6'],
+      matchUpdateTypes: [
+        'minor',
+      ],
+      schedule: [
+        '* * * * 6',
+      ],
+      matchPackageNames: [
+        '!/.*camunda.*/',
+      ],
     },
     {
       description: 'Schedule patch/digest updates for Sundays.',
-      matchUpdateTypes: ['pin', 'digest', 'patch'],
-      excludePackageNames: ['/.*camunda.*/'],
-      schedule: ['* * * * 0'],
+      matchUpdateTypes: [
+        'pin',
+        'digest',
+        'patch',
+      ],
+      schedule: [
+        '* * * * 0',
+      ],
+      matchPackageNames: [
+        '!/.*camunda.*/',
+      ],
     },
     {
-      addLabels: ['deps/charts'],
+      addLabels: [
+        'deps/charts',
+      ],
       matchFileNames: [
         'charts/*/Chart.yaml',
         'charts/*/values*.yaml',
@@ -100,16 +134,27 @@
       ],
     },
     {
-      addLabels: ['deps/tools'],
-      matchFileNames: ['.tool-versions'],
-      schedule: ['every weekend'],
+      addLabels: [
+        'deps/tools',
+      ],
+      matchFileNames: [
+        '.tool-versions',
+      ],
+      schedule: [
+        'every weekend',
+      ],
     },
     {
-      addLabels: ['deps/github-actions'],
-      matchManagers: ['github-actions'],
-      schedule: ['every weekend'],
+      addLabels: [
+        'deps/github-actions',
+      ],
+      matchManagers: [
+        'github-actions',
+      ],
+      schedule: [
+        'every weekend',
+      ],
     },
-    // Limit tools and libs versions to the actual Distro CI Kubernetes cluster.
     {
       allowedVersions: '<1.28.0',
       matchDepNames: [
@@ -122,7 +167,6 @@
         '/k8s.io/.*/',
       ],
     },
-    // Some asdf plugins use the "v" prefix, so we extract the version without it.
     {
       matchFileNames: [
         '.tool-versions',
@@ -133,23 +177,33 @@
       ],
       extractVersion: '^(?<version>v.*)$',
     },
-    // Camunda chart version policies
     {
       description: 'Disable major updates for Helm dependencies to prevent breaking changes.',
       enabled: false,
-      matchManagers: ['helmv3', 'helm-values', 'custom.regex'],
-      matchUpdateTypes: ['major'],
+      matchManagers: [
+        'helmv3',
+        'helm-values',
+        'custom.regex',
+      ],
+      matchUpdateTypes: [
+        'major',
+      ],
     },
     {
       description: 'Disable minor updates for Camunda components in previous chart versions.',
       enabled: false,
-      matchPackageNames: ['/.*camunda/[.-]*/', '/registry.camunda.cloud/[.-/]*/'],
+      matchPackageNames: [
+        '/.*camunda/[.-]*/',
+        '/registry.camunda.cloud/[.-/]*/',
+      ],
       matchFileNames: [
         'charts/camunda-platform-8.*/values.yaml',
         'charts/camunda-platform-8.*/values-latest.yaml',
         'charts/camunda-platform-8.*/values-digest.yaml',
       ],
-      matchUpdateTypes: ['minor'],
+      matchUpdateTypes: [
+        'minor',
+      ],
     },
     {
       description: 'Disable archived Elasticsearch curator image.',
@@ -161,14 +215,20 @@
     },
     {
       description: 'Enable patch updates for Camunda components in previous chart versions.',
-      matchDatasources: ['helmv3', 'helm-values', 'docker', 'regex'],
+      matchDatasources: [
+        'helmv3',
+        'helm-values',
+        'docker',
+        'regex',
+      ],
       matchFileNames: [
         'charts/camunda-platform-8.*/values.yaml',
         'charts/camunda-platform-8.*/values-latest.yaml',
       ],
-      matchUpdateTypes: ['patch'],
+      matchUpdateTypes: [
+        'patch',
+      ],
     },
-    // Elasticsearch version constraints per chart version
     {
       description: 'Camunda 8.3: Limit Elasticsearch to 8.13.x',
       matchDatasources: [
@@ -195,8 +255,6 @@
       ],
       allowedVersions: '19.13.15',
     },
-    // Limit Elasticsearch version to latest supported version in Camunda 8.4 chart.
-    // https://docs.camunda.io/docs/8.4/reference/supported-environments/#camunda-8-self-managed
     {
       matchDatasources: [
         'docker',
@@ -222,8 +280,6 @@
       ],
       allowedVersions: '19.19.4',
     },
-    // Limit Elasticsearch version to latest supported version in Camunda 8.5 chart.
-    // https://docs.camunda.io/docs/8.5/reference/supported-environments/#camunda-8-self-managed
     {
       matchDatasources: [
         'docker',
@@ -237,8 +293,6 @@
       ],
       allowedVersions: '~8.12.0',
     },
-    // Limit Elasticsearch version to latest supported version in Camunda 8.6 chart.
-    // https://docs.camunda.io/docs/8.6/reference/supported-environments/#camunda-8-self-managed
     {
       matchDatasources: [
         'docker',
@@ -252,8 +306,6 @@
       ],
       allowedVersions: '~8.15.0',
     },
-    // Limit Elasticsearch version to latest supported version in Camunda 8.7 chart.
-    // https://docs.camunda.io/docs/reference/supported-environments/#camunda-8-self-managed
     {
       matchDatasources: [
         'docker',
@@ -267,7 +319,6 @@
       ],
       allowedVersions: '~8.17.0',
     },
-    // Limit alpha chart version to alpha tags only.
     {
       enabled: true,
       matchDatasources: [
@@ -277,7 +328,6 @@
         'camunda/camunda',
       ],
       matchFileNames: [
-        // bump these to whatever the latest alpha is
         'charts/camunda-platform-8.9/Chart.yaml',
       ],
       versioning: 'regex:^(?<major>\\d+)(.(?<minor>\\d+))(.(?<patch>\\d+))(-(?<prerelease>alpha[1-9]))$',
@@ -317,9 +367,17 @@
         'charts/camunda-platform-8.8/values.yaml',
         'charts/camunda-platform-8.8/values-latest.yaml',
       ],
-      matchUpdateTypes: ['patch', 'pin'],
-      schedule: ['at any time'],
-      addLabels: ['camunda-platform', 'priority-high'],
+      matchUpdateTypes: [
+        'patch',
+        'pin',
+      ],
+      schedule: [
+        'at any time',
+      ],
+      addLabels: [
+        'camunda-platform',
+        'priority-high',
+      ],
     },
     {
       enabled: true,
@@ -337,9 +395,18 @@
         'charts/camunda-platform-8.9/values.yaml',
         'charts/camunda-platform-8.9/values-latest.yaml',
       ],
-      matchUpdateTypes: ['major', 'minor', 'patch'],
-      schedule: ['at any time'],
-      addLabels: ['camunda-platform', 'priority-high'],
+      matchUpdateTypes: [
+        'major',
+        'minor',
+        'patch',
+      ],
+      schedule: [
+        'at any time',
+      ],
+      addLabels: [
+        'camunda-platform',
+        'priority-high',
+      ],
     },
     {
       enabled: true,
@@ -356,9 +423,16 @@
         'charts/camunda-platform-8.8/values-digest.yaml',
         'charts/camunda-platform-8.9/values-digest.yaml',
       ],
-      matchUpdateTypes: ['digest'],
-      schedule: ['at any time'],
-      addLabels: ['camunda-platform', 'priority-high'],
+      matchUpdateTypes: [
+        'digest',
+      ],
+      schedule: [
+        'at any time',
+      ],
+      addLabels: [
+        'camunda-platform',
+        'priority-high',
+      ],
     },
     {
       enabled: true,
@@ -380,32 +454,34 @@
         '.github/actions/*',
         'charts/**',
       ],
-      matchUpdateTypes: ['minor', 'patch', 'pin', 'digest'],
+      matchUpdateTypes: [
+        'minor',
+        'patch',
+        'pin',
+        'digest',
+      ],
       addLabels: [
         'automerge',
         'automation/renovatebot',
         'kind/chore',
       ],
-      // Use Renovate's automerge (not GitHub's platformAutomerge)
-      // Renovate waits for all status checks by default, which works with dynamic checks per chart version
       platformAutomerge: false,
       automerge: true,
-      automergeType: 'pr', // Merge via PR to respect GitHub settings
-      ignoreTests: false, // Wait for all status checks to pass
+      automergeType: 'pr',
+      ignoreTests: false,
     },
-    // This package name is used by the initContainer for keycloak in v8.5, and doesn't make sense to
-    // be processed by renovate because it requires helm templating to render the real image name.
     {
-      "matchDepNames": ["{{ .Values.global.identity.image.registry }}/{{ .Values.global.identity.image.repository }}{{ if .Values.global.identity.image.digest }}"],
-      "enabled": false
+      matchDepNames: [
+        '{{ .Values.global.identity.image.registry }}/{{ .Values.global.identity.image.repository }}{{ if .Values.global.identity.image.digest }}',
+      ],
+      enabled: false,
     },
   ],
   customManagers: [
     {
-      // This is mainly used to Camunda alpha chart.
       customType: 'regex',
-      fileMatch: [
-        '\\.yaml$',
+      managerFilePatterns: [
+        '/\\.yaml$/',
       ],
       datasourceTemplate: 'github-tags',
       matchStrings: [
@@ -414,10 +490,9 @@
       versioningTemplate: '{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}',
     },
     {
-      // This is used to update npm packages in GitHub Actions workflows.
       customType: 'regex',
-      fileMatch: [
-        '^\\.github/workflows/.*\\.ya?ml$',
+      managerFilePatterns: [
+        '/^\\.github/workflows/.*\\.ya?ml$/',
       ],
       datasourceTemplate: 'npm',
       matchStrings: [
@@ -426,13 +501,9 @@
       versioningTemplate: 'semver',
     },
     {
-      // This is mainly used to update enterprise image tags like Console and Web-Modeler.
-      // Console and Web-Modeler Self-Managed versions are different from SaaS versions,
-      // hence, we use image tags from Camunda private registry as a source of truth for those components.
-      // Another use case is Elasticsearch public Docker registry.
       customType: 'regex',
-      fileMatch: [
-        '\\.yaml$',
+      managerFilePatterns: [
+        '/\\.yaml$/',
       ],
       datasourceTemplate: 'docker',
       matchStrings: [
@@ -440,25 +511,16 @@
       ],
       versioningTemplate: '{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}',
     },
-    // This regex manager is used to update the image digests in the values-digest.yaml files.
     {
       customType: 'regex',
-      fileMatch: [
-        'values-digest\\.yaml$'
+      managerFilePatterns: [
+        '/values-digest\\.yaml$/',
       ],
       matchStrings: [
-        /*
-        # Example.
-        orchestration:
-          image:
-            repository: camunda/camunda
-            tag: SNAPSHOT
-            digest: "sha256:abcdef123456789..."
-        */
-        'repository:\\s+(?<depName>\\S+)[\\s\\S]*?tag:\\s+(?<currentValue>[^\\s]+)[\\s\\S]*?digest:\\s+\"?(?<currentDigest>sha256:[a-f0-9]{64})\"?'
+        'repository:\\s+(?<depName>\\S+)[\\s\\S]*?tag:\\s+(?<currentValue>[^\\s]+)[\\s\\S]*?digest:\\s+"?(?<currentDigest>sha256:[a-f0-9]{64})"?',
       ],
       datasourceTemplate: 'docker',
       versioningTemplate: 'docker',
-    }
+    },
   ],
 }
